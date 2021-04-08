@@ -1,4 +1,4 @@
-APP := api-testing
+APP := api-tester
 IMAGE := gcr.io/dronedeploy-code-delivery-0/$(APP)
 GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH := $(shell git rev-parse --short HEAD)

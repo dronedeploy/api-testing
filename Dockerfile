@@ -1,16 +1,14 @@
-FROM golang:1.16-alpine3.12 AS go-compiler
-RUN apk add --no-cache git && rm -rf /tmp/*
-ENV GOPATH /go
-RUN go get -u github.com/k6io/k6
+FROM node:14.16-alpine3.13 as api-tester
+LABEL REPO="https://github.com/dronedeploy/api-testing"
 
-FROM node:14.16-alpine3.12 as api-testing
-LABEL REPO="https://github.com/dronedeploy/load-testing"
+RUN apk add --no-cache bash gzip tar wget && rm -rf /tmp/*
 
-RUN apk add --no-cache bash && rm -rf /tmp/*
-COPY --from=go-compiler /go/bin/k6 /usr/local/bin/
+WORKDIR /tmp
+ARG K6_VERSION=v0.31.1
+RUN wget --quiet https://github.com/k6io/k6/releases/download/${K6_VERSION}/k6-${K6_VERSION}-linux64.tar.gz && \
+    tar xvzf k6-${K6_VERSION}-linux64.tar.gz && mv k6-${K6_VERSION}-linux64/k6 /usr/local/bin && rm -rf k6-${K6_VERSION}-linux64*
 
-WORKDIR /api-testing
-
+WORKDIR /api-tester
 CMD [ "bash" ]
 
 ARG GIT_HASH
