@@ -3,7 +3,7 @@ IMAGE := gcr.io/dronedeploy-code-delivery-0/$(APP)
 GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH := $(shell git rev-parse --short HEAD)
 
-LOCAL_OPTS := -v $(CURDIR):/$(APP)
+LOCAL_OPTS := -v $(CURDIR):/home/k6
 
 help:
 	- @echo "package: build and label the latest docker image"
