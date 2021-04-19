@@ -3,7 +3,9 @@ IMAGE := gcr.io/dronedeploy-code-delivery-0/$(APP)
 GIT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 GIT_HASH := $(shell git rev-parse --short HEAD)
 
-LOCAL_OPTS := -v $(CURDIR):/home/k6
+LOCAL_OPTS := \
+	-e PIPELINE_KEY=$(PIPELINE_KEY) \
+	-v $(CURDIR/tests):/home/k6/tests
 
 help:
 	- @echo "package: build and label the latest docker image"
@@ -28,3 +30,7 @@ push:
 bash-local:
 	- @echo "Shelling into the docker container with local workspace mounted"
 	docker run -it --rm $(LOCAL_OPTS) $(IMAGE):local bash
+
+run-local:
+	- @echo "Running k6 tests from mounted local workspace"
+	docker run -it --rm $(LOCAL_OPTS) $(IMAGE):local

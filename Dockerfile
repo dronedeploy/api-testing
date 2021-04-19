@@ -13,7 +13,8 @@ RUN wget https://github.com/k6io/k6/releases/download/${K6_VERSION}/k6-${K6_VERS
 RUN adduser -D -u 12345 -g 12345 k6
 USER 12345
 WORKDIR /home/k6
-CMD [ "bash" ]
+COPY tests tests
+CMD [ "k6", "run", "tests/performance/folders.js" ]
 
 ARG GIT_HASH
 LABEL GIT_HASH=${GIT_HASH}
