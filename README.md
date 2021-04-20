@@ -8,6 +8,21 @@ much of the same configuration. See the READMEs in the individual directories fo
 
 ## Running Tests
 
+The pipeline user's key for `stage` is required to run the tests. Make sure to export it as `PIPELINE_KEY`.
+
+```shell
+$ PIPELINE_KEY=<redacted> make run-local
+```
+
+**CAVEAT**: Currently the test module run is `tests/performance/folders.js`.
+
 ## Writing Tests
 
-[Javascript API](https://k6.io/docs/javascript-api/)
+K6 uses a custom JS interpreter with its own builtin modules. To create a test, create a new module under the `tests`
+directory. Your module must export a function called `default` that executes the desired test. It may also export an
+object `options` that sets up the parameters for executing your test.
+
+K6 has amazing [documentation](https://k6.io/docs/).
+[This section](https://k6.io/docs/getting-started/running-k6/) will get you started writing tests.
+
+For a working example, look at [folders.js](tests/performance/folders.js)

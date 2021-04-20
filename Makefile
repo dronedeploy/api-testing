@@ -5,13 +5,14 @@ GIT_HASH := $(shell git rev-parse --short HEAD)
 
 LOCAL_OPTS := \
 	-e PIPELINE_KEY=$(PIPELINE_KEY) \
-	-v $(CURDIR/tests):/home/k6/tests
+	-v $(CURDIR)/tests:/home/k6/tests
 
 help:
 	- @echo "package: build and label the latest docker image"
 	- @echo "local: tag the latest image for local development and testing"
 	- @echo "push: push the latest docker image to the container registry"
 	- @echo "bash-local: run a shell in the docker image with the local workspace mounted"
+	- @echo "run-local: run tests from mounted local workspace"
 
 package:
 	- @echo "Creating and tagging docker image"

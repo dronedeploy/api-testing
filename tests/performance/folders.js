@@ -14,8 +14,8 @@ export const options = {
 
 export default function() {
     const response = http.get(
-        `https://${_CREDENTIALS}@stage.dronedeploy.com/api/v2/folders?organization_id=${_ORG_ID}`,
-        { auth: "basic" },
+        `https://${_CREDENTIALS}@stage.dronedeploy.com/api/v1/folders?organization_id=${_ORG_ID}`,
+        { auth: "basic" }
     );
     check(response, {
       "status is 200": (r) => r.status === 200,
