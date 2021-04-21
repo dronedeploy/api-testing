@@ -1,0 +1,37 @@
+@startuml
+' skinparam linetype polyline
+skinparam linetype ortho
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+
+/'
+    Make really cool icons (sprites) available to your diagram.
+    Make sure to check the following to see what"s available:
+    DEVICONS: https://github.com/tupadr3/plantuml-icon-font-sprites/tree/master/devicons2
+    FONTAWESOME: https://github.com/tupadr3/plantuml-icon-font-sprites/tree/master/font-awesome-5
+'/
+!define DEVICONS https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/devicons2
+!define FONTAWESOME https://raw.githubusercontent.com/tupadr3/plantuml-icon-font-sprites/master/font-awesome-5
+/'
+    Example import for users sprite
+    !include FONTAWESOME/users.puml
+'/
+
+LAYOUT_TOP_DOWN()
+'LAYOUT_LEFT_RIGHT()
+LAYOUT_WITH_LEGEND()
+'LAYOUT_AS_SKETCH()
+
+System_Boundary(dd, "DroneDeploy") {
+    Container(web, "Drone Web", "Python, Tornado", "GraphQL and REST APIs")
+    Container(tester, "API Tester", "K6, JavaScript", "Load and Performance Testing")
+    Container(db, "Stage Database", "MongoDB")
+}
+
+Container(dog, "DataDog", "", "Metrics and Dashboards")
+
+Rel(web, db, "test data")
+Rel(tester, web, "load and performance testing")
+Rel(tester, dog, "store testing metrics")
+
+@enduml

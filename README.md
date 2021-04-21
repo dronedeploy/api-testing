@@ -26,3 +26,7 @@ K6 has amazing [documentation](https://k6.io/docs/).
 [This section](https://k6.io/docs/getting-started/running-k6/) will get you started writing tests.
 
 For a working example, look at [folders.js](tests/performance/folders.js)
+
+## Design Overview
+
+![Overview](docs/overview.png)
