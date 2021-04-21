@@ -14,7 +14,8 @@ RUN adduser -D -u 12345 -g 12345 k6
 USER 12345
 WORKDIR /home/k6
 COPY tests tests
-CMD [ "k6", "run", "tests/performance/folders.js" ]
+COPY run.sh run.sh
+CMD [ "bash", "run.sh" ]
 
 ARG GIT_HASH
 LABEL GIT_HASH=${GIT_HASH}

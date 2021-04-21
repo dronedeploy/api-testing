@@ -19,16 +19,16 @@ skinparam linetype ortho
 
 LAYOUT_TOP_DOWN()
 'LAYOUT_LEFT_RIGHT()
-LAYOUT_WITH_LEGEND()
+' LAYOUT_WITH_LEGEND()
 'LAYOUT_AS_SKETCH()
 
 System_Boundary(dd, "DroneDeploy") {
-    Container(web, "Drone Web", "Python, Tornado", "GraphQL and REST APIs")
+    Container(web, "Drone Web Stage", "Python, Tornado", "GraphQL and REST APIs")
     Container(tester, "API Tester", "K6, JavaScript", "Load and Performance Testing")
-    Container(db, "Stage Database", "MongoDB")
+    Container(db, "Database Stage", "MongoDB", "Test Data")
 }
 
-Container(dog, "DataDog", "", "Metrics and Dashboards")
+Container(dog, "DataDog", "Third Party Service", "Metrics and Dashboards")
 
 Rel(web, db, "test data")
 Rel(tester, web, "load and performance testing")
