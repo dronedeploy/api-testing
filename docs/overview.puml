@@ -24,8 +24,8 @@ LAYOUT_TOP_DOWN()
 
 System_Boundary(dd, "DroneDeploy") {
     Container(web, "Drone Web Stage", "Python, Tornado", "GraphQL and REST APIs")
-    Container(tester, "API Tester", "K6, JavaScript", "Load and Performance Testing")
-    Container(db, "Database Stage", "MongoDB", "Test Data")
+    Container(tester, "API Tester", "K6, JavaScript", "API Tests")
+    ContainerDb(db, "Database Stage", "MongoDB", "Test Data")
 }
 
 Container(dog, "DataDog", "Third Party Service", "Metrics and Dashboards")
